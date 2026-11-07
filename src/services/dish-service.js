@@ -6,7 +6,7 @@ export async function createDish(dish) {
   const dishes = await loadDishes();
   const validate = validateDish(dish);
 
-  if (validate === false) {
+  if (!validate) {
     throw new Error("Dados inválidos");
   }
 
