@@ -1,4 +1,7 @@
-import { createDishController } from "../controllers/dish-controller.js";
+import {
+  createDishController,
+  getAllDishesController,
+} from "../controllers/dish-controller.js";
 import { sendJson } from "../utils/response-helper.js";
 import { createRouter } from "../utils/router.js";
 
@@ -8,6 +11,11 @@ export function dishRoutes(req, res) {
       method: "POST",
       path: "/pratos",
       handler: createDishController,
+    },
+    {
+      method: "GET",
+      path: "/pratos",
+      handler: getAllDishesController,
     },
   ];
 
