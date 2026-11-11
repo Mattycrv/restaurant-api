@@ -15,3 +15,8 @@ export async function createDish(dish) {
   await saveDishes(dishes);
   return newDish;
 }
+
+export async function getAllDishes() {
+  const dishes = await loadDishes();
+  return dishes;
+}
