@@ -14,7 +14,7 @@ export function dishRoutes(req, res) {
   const route = createRouter(req, routes);
 
   if (route) {
-    routes.handler(req, res);
+    route.handler(req, res);
   } else {
     sendJson(res, 404, { message: "Rota não encontrada" });
   }
