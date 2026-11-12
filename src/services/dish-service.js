@@ -20,3 +20,16 @@ export async function getAllDishes() {
   const dishes = await loadDishes();
   return dishes;
 }
+
+export async function getDishById(id) {
+  const dishes = loadDishes();
+  const dishFound = dishes.find((dish) => {
+    dish.id === id;
+  });
+
+  if (!dishFound) {
+    throw new Error("Prato não encontrado.");
+  }
+
+  return dishFound;
+}
