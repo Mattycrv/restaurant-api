@@ -1,5 +1,9 @@
 import { handleError } from "../middlewares/error-handler.js";
-import { createDish, getAllDishes } from "../services/dish-service.js";
+import {
+  createDish,
+  getAllDishes,
+  getDishById,
+} from "../services/dish-service.js";
 import { sendJson } from "../utils/response-helper.js";
 
 export async function createDishController(req, res) {
@@ -32,6 +36,20 @@ export async function getAllDishesController(req, res) {
   try {
     const dishes = await getAllDishes();
     sendJson(res, 200, dishes);
+  } catch (error) {
+    handleError(res, error);
+  }
+}
+
+export async function getDishByIdController(req, res) {
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const pathname = url.pathname;
+  const parts = pathname.split("/");
+  const id = parts[2];
+
+  try {
+    const dishFound = await getDishById(id);
+    sendJson(res, 200, dishFound);
   } catch (error) {
     handleError(res, error);
   }

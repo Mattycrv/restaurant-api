@@ -22,9 +22,9 @@ export async function getAllDishes() {
 }
 
 export async function getDishById(id) {
-  const dishes = loadDishes();
+  const dishes = await loadDishes();
   const dishFound = dishes.find((dish) => {
-    dish.id === id;
+    return dish.id === id;
   });
 
   if (!dishFound) {
