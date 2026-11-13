@@ -1,1 +1,10 @@
-[{"name":"Hambúrguer","price":25,"category":"Lanches"},{"name":"Pizza de Calabresa","price":39.9,"category":"Pizza"}]
+[
+  { "name": "Hambúrguer", "price": 25, "category": "Lanches" },
+  { "name": "Pizza de Calabresa", "price": 39.9, "category": "Pizza" },
+  {
+    "id": "c9ed760f-20b1-4484-a280-dd8eb7c18677",
+    "name": "Pizza doce",
+    "price": 49.9,
+    "category": "Pizza"
+  }
+]

@@ -33,3 +33,12 @@ export async function getDishById(id) {
 
   return dishFound;
 }
+
+export async function getDishByCategory(category) {
+  const dishes = await loadDishes();
+  const dishesFound = dishes.filter((dish) => {
+    return dish.category === category;
+  });
+
+  return dishesFound;
+}

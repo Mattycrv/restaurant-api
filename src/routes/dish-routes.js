@@ -19,7 +19,7 @@ export function dishRoutes(req, res) {
       handler: getAllDishesController,
     },
     {
-      method: "/GET",
+      method: "GET",
       path: "/pratos/:id",
       handler: getDishByIdController,
     },
