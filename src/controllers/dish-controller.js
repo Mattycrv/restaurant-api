@@ -3,6 +3,7 @@ import {
   createDish,
   getAllDishes,
   getDishById,
+  getDishByCategory,
 } from "../services/dish-service.js";
 import { sendJson } from "../utils/response-helper.js";
 
@@ -50,6 +51,20 @@ export async function getDishByIdController(req, res) {
   try {
     const dishFound = await getDishById(id);
     sendJson(res, 200, dishFound);
+  } catch (error) {
+    handleError(res, error);
+  }
+}
+
+export async function getDishByCategoryController(req, res) {
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const pathname = url.pathname;
+  const parts = pathname.split("/");
+  const category = parts[2];
+
+  try {
+    const dishesFound = await getDishByCategory(category);
+    sendJson(res, 200, dishesFound);
   } catch (error) {
     handleError(res, error);
   }
