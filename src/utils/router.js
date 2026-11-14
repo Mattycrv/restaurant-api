@@ -8,7 +8,7 @@ export function createRouter(req, routes) {
     const sameLength = routeParts.length === requestsParts.length;
 
     const match = routeParts.every((part, index) => {
-      return part === ":id" || part === requestsParts[index];
+      return part.startsWith(":") || part === requestsParts[index];
     });
 
     return route.method === req.method && sameLength && match;

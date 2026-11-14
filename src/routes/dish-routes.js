@@ -21,13 +21,13 @@ export function dishRoutes(req, res) {
     },
     {
       method: "GET",
-      path: "/pratos/:id",
-      handler: getDishByIdController,
+      path: "/pratos/categoria/:cat",
+      handler: getDishByCategoryController,
     },
     {
       method: "GET",
-      path: "/pratos/categoria/:cat",
-      handler: getDishByCategoryController,
+      path: "/pratos/:id",
+      handler: getDishByIdController,
     },
   ];
 
