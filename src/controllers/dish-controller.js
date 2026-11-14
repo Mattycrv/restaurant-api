@@ -60,7 +60,7 @@ export async function getDishByCategoryController(req, res) {
   const url = new URL(req.url, `http://${req.headers.host}`);
   const pathname = url.pathname;
   const parts = pathname.split("/");
-  const category = parts[2];
+  const category = parts[3];
 
   try {
     const dishesFound = await getDishByCategory(category);
