@@ -5,6 +5,7 @@ import {
   getDishById,
   getDishByCategory,
   updateDish,
+  deleteDish,
 } from "../services/dish-service.js";
 import { sendJson } from "../utils/response-helper.js";
 
@@ -100,4 +101,18 @@ export async function updateDishController(req, res) {
       handleError(res, error);
     }
   });
+}
+
+export async function deleteDishController(req, res) {
+  const url = new URL(req.url, `http://${req.headers.host}`);
+  const pathname = url.pathname;
+  const parts = pathname.split("/");
+  const id = parts[2];
+
+  try {
+    await deleteDish(id);
+    sendJson(res, 200, { message: "Prato excluído com sucesso." });
+  } catch (error) {
+    handleError(res, error);
+  }
 }
