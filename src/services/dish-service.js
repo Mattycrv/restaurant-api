@@ -67,3 +67,16 @@ export async function updateDish(id, updatedData) {
 
   return updatedDish;
 }
+
+export async function deleteDish(id) {
+  const dishes = await loadDishes();
+  const dishFound = await getDishById(id);
+
+  const newDishesList = dishes.filter((dish) => {
+    return dish.id !== dishFound.id;
+  });
+
+  await saveDishes(newDishesList);
+
+  return newDishesList;
+}
