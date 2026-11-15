@@ -42,3 +42,28 @@ export async function getDishByCategory(category) {
 
   return dishesFound;
 }
+
+export async function updateDish(id, updatedData) {
+  const dishes = await loadDishes();
+  const dishFound = await getDishById(id);
+  const index = dishes.findIndex((dish) => {
+    return dish.id === dishFound.id;
+  });
+
+  const validate = validateDish(updatedData);
+
+  if (!validate) {
+    throw new Error("Dados inválidos");
+  }
+
+  const updatedDish = {
+    ...dishFound,
+    ...updatedData,
+  };
+
+  dishes[index] = updatedDish;
+
+  await saveDishes(dishes);
+
+  return updatedDish;
+}
