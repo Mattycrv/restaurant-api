@@ -4,6 +4,7 @@ import {
   getDishByIdController,
   getDishByCategoryController,
   updateDishController,
+  deleteDishController,
 } from "../controllers/dish-controller.js";
 import { sendJson } from "../utils/response-helper.js";
 import { createRouter } from "../utils/router.js";
@@ -34,6 +35,11 @@ export function dishRoutes(req, res) {
       method: "PUT",
       path: "/pratos/:id",
       handler: updateDishController,
+    },
+    {
+      method: "DELETE",
+      path: "/pratos/:id",
+      handler: deleteDishController,
     },
   ];
 
