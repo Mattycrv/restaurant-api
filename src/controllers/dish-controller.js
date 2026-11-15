@@ -4,6 +4,7 @@ import {
   getAllDishes,
   getDishById,
   getDishByCategory,
+  updateDish,
 } from "../services/dish-service.js";
 import { sendJson } from "../utils/response-helper.js";
 
@@ -68,4 +69,35 @@ export async function getDishByCategoryController(req, res) {
   } catch (error) {
     handleError(res, error);
   }
+}
+
+export async function updateDishController(req, res) {
+  let body = "";
+
+  req.on("data", (chunk) => {
+    body += chunk.toString();
+  });
+
+  req.on("end", async () => {
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    const pathname = url.pathname;
+    const parts = pathname.split("/");
+    const id = parts[2];
+
+    let updatedData;
+
+    try {
+      updatedData = JSON.parse(body);
+    } catch (error) {
+      handleError(res, error);
+      return;
+    }
+
+    try {
+      const updatedDish = await updateDish(id, updatedData);
+      sendJson(res, 200, updatedDish);
+    } catch (error) {
+      handleError(res, error);
+    }
+  });
 }
