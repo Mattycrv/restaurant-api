@@ -3,6 +3,7 @@ import {
   getAllDishesController,
   getDishByIdController,
   getDishByCategoryController,
+  updateDishController,
 } from "../controllers/dish-controller.js";
 import { sendJson } from "../utils/response-helper.js";
 import { createRouter } from "../utils/router.js";
@@ -28,6 +29,11 @@ export function dishRoutes(req, res) {
       method: "GET",
       path: "/pratos/:id",
       handler: getDishByIdController,
+    },
+    {
+      method: "PUT",
+      path: "/pratos/:id",
+      handler: updateDishController,
     },
   ];
 
