@@ -1,5 +1,5 @@
 export function handleError(res, error) {
-  const statusCode = error.statusCode || 400;
+  const statusCode = error.statusCode || 500;
 
   res.writeHead(statusCode, {
     "Content-Type": "application/json; charset=utf-8",
