@@ -7,7 +7,9 @@ export async function createDish(dish) {
   const validate = validateDish(dish);
 
   if (!validate) {
-    throw new Error("Dados inválidos");
+    const error = new Error("Dados inválidos");
+    error.statusCode = 400;
+    throw error;
   }
 
   const newDish = createDishModel(dish);
@@ -28,7 +30,9 @@ export async function getDishById(id) {
   });
 
   if (!dishFound) {
-    throw new Error("Prato não encontrado.");
+    const error = new Error("Prato não encontrado.");
+    error.statusCode = 404;
+    throw error;
   }
 
   return dishFound;
@@ -53,7 +57,9 @@ export async function updateDish(id, updatedData) {
   const validate = validateDish(updatedData);
 
   if (!validate) {
-    throw new Error("Dados inválidos");
+    const error = new Error("Dados inválidos");
+    error.statusCode = 400;
+    throw error;
   }
 
   const updatedDish = {
