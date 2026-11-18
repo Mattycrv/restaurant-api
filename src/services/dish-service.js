@@ -12,6 +12,19 @@ export async function createDish(dish) {
     throw error;
   }
 
+  const existingDish = dishes.find((element) => {
+    return (
+      element.name.toLowerCase() === dish.name.toLowerCase() &&
+      element.category.toLowerCase() === dish.category.toLowerCase()
+    );
+  });
+
+  if (existingDish) {
+    const error = new Error("Este prato já está cadastrado.");
+    error.statusCode = 400;
+    throw error;
+  }
+
   const newDish = createDishModel(dish);
   dishes.push(newDish);
   await saveDishes(dishes);
